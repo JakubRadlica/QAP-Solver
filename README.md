@@ -1,0 +1,1 @@
+# SI_CW_1_Algorytmy_Genetyczne_QNP
