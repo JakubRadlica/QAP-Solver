@@ -7,8 +7,8 @@ import java.util.stream.IntStream;
 
 public class Genotype {
 
-    int genotype[];
-    int fittnes;
+    protected int genotype[];
+    protected int fittnes;
 
     public Genotype(int[] genotype){
         this.genotype=genotype;
@@ -21,8 +21,16 @@ public class Genotype {
     public static class GenotypeBuilder{
         private int genotypeSize;
 
+        public GenotypeBuilder(){
+
+        }
         public GenotypeBuilder(int genotypeSize){
             this.genotypeSize=genotypeSize;
+        }
+
+        public GenotypeBuilder genotypeSize(int genotypeSize){
+            this.genotypeSize=genotypeSize;
+            return this;
         }
 
         public Genotype buildRandomGenotype (){
