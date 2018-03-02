@@ -8,14 +8,14 @@ import pl.radlica.operations.selector.RandomSelector;
 
 import java.util.List;
 
-public class GenethicAlghoritm {
+public class GeneticAlgorithm {
 
     private List<Population> populations;
     private Context context;
     private ISelector selector;
     private IMutator mutator;
 
-    private GenethicAlghoritm(Context context, ISelector selector, IMutator mutator){
+    private GeneticAlgorithm(Context context, ISelector selector, IMutator mutator){
         this.context = context;
         this.selector = selector;
         this.mutator = mutator;
@@ -26,27 +26,27 @@ public class GenethicAlghoritm {
     }
 
 
-    public static class GenethicAlghortimBuilder{
+    public static class GeneticAlgolrithmBuilder {
 
         Context context;
         ISelector selector;
         IMutator mutator;
 
-        public GenethicAlghortimBuilder(){
+        public GeneticAlgolrithmBuilder(){
             selector = new RandomSelector();
         }
 
-        public  GenethicAlghortimBuilder context(Context context){
+        public GeneticAlgolrithmBuilder context(Context context){
             this.context=context;
             return this;
         }
 
-        public GenethicAlghortimBuilder selector(ISelector selector){
+        public GeneticAlgolrithmBuilder selector(ISelector selector){
             selector = selector;
             return this;
         }
 
-        public  GenethicAlghortimBuilder mutator(IMutator mutator) {
+        public GeneticAlgolrithmBuilder mutator(IMutator mutator) {
             this.mutator=mutator;
             return this;
         }
