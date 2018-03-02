@@ -1,26 +1,17 @@
 package pl.radlica.model;
 
+
+import lombok.Getter;
+
 public class Context {
 
-    private int contextSize;
-    private int distance[][];
-    private int flow[][];
+    @Getter private final int contextSize;
+    @Getter private final int distance[][];
+    @Getter private final int flow[][];
 
-    public Context(int ctxSize, int[][] distance, int[][] flow){
+    public Context(final int ctxSize, final int[][] distance, final int[][] flow){
         this.contextSize=ctxSize;
         this.distance=distance;
         this.flow=flow;
-    }
-
-    private int getContextSize(){
-        return this.contextSize;
-    }
-
-    public int[][] getDistance() {
-        return distance;
-    }
-
-    public int[][] getFlow() {
-        return flow;
     }
 }

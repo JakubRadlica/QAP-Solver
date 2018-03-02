@@ -1,21 +1,20 @@
 package pl.radlica.model;
 
+import lombok.Getter;
+import lombok.Setter;
+
 import java.util.ArrayList;
 import java.util.List;
 
 public class Population {
 
-    protected List<Genotype> genotypes;
-    protected int bestFittnes;
-    protected int avgFittnes;
-    protected int worstFittnes;
+    @Getter @Setter protected List<Genotype> genotypes;
+    @Getter @Setter protected int bestFittnes;
+    @Getter @Setter protected int avgFittnes;
+    @Getter @Setter protected int worstFittnes;
 
     public Population(List<Genotype> genotypes){
         this.genotypes=genotypes;
-    }
-
-    public List<Genotype> getGenotypes(){
-        return this.genotypes;
     }
 
 

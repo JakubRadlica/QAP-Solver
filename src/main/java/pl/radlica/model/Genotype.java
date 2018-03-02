@@ -1,5 +1,9 @@
 package pl.radlica.model;
 
+import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
+
 import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -7,8 +11,8 @@ import java.util.stream.IntStream;
 
 public class Genotype {
 
-    protected int genotype[];
-    protected int fittnes;
+    @Getter @Setter private int genotype[];
+    @Getter @Setter private int fittnes;
 
     public Genotype(int[] genotype){
         this.genotype=genotype;

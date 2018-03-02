@@ -10,19 +10,19 @@ import java.util.List;
 
 public class GenethicAlghoritm {
 
-    List<Population> populations;
-    Context context;
-    ISelector selector;
-    IMutator mutator;
+    private List<Population> populations;
+    private Context context;
+    private ISelector selector;
+    private IMutator mutator;
 
-    public GenethicAlghoritm(){
-
-    }
-
-    protected GenethicAlghoritm(Context context, ISelector selector, IMutator mutator){
+    private GenethicAlghoritm(Context context, ISelector selector, IMutator mutator){
         this.context = context;
         this.selector = selector;
         this.mutator = mutator;
+    }
+
+    public void run(){
+
     }
 
 
@@ -50,7 +50,6 @@ public class GenethicAlghoritm {
             this.mutator=mutator;
             return this;
         }
-
 
     }
 }
