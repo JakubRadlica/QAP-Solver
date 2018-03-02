@@ -11,7 +11,7 @@ import pl.radlica.model.Genotype;
 public class GenotypeTest {
 
     @Test
-    @DisplayName("#1 Genotype test")
+    @DisplayName("#1 Genotype test, calculate fitness")
     public void genotypeTest1(){
         int[][] distanceMatrix = {
                 {0,22,53,53},
@@ -33,7 +33,7 @@ public class GenotypeTest {
     }
 
     @Test
-    @DisplayName("#2 Genotype test")
+    @DisplayName("#2 Genotype test, calculate fitness")
     public void genotypeTest2() throws ContextFileException {
         ContextReader contextReader = new ContextReader();
         Context ctx = contextReader.loadContextFromFile(ContextFile.QNP_12);
@@ -42,7 +42,7 @@ public class GenotypeTest {
     }
 
     @Test
-    @DisplayName("#3 Genotype test")
+    @DisplayName("#3 Genotype test, calculate fitness")
     public void genotypeTest3() throws ContextFileException {
         ContextReader contextReader = new ContextReader();
         Context ctx = contextReader.loadContextFromFile(ContextFile.QNP_14);
@@ -51,7 +51,7 @@ public class GenotypeTest {
     }
 
     @Test
-    @DisplayName("#4 Genotype test, assert")
+    @DisplayName("#4 Genotype test, calculate fitness")
     public void genotypeTest4() throws ContextFileException {
         ContextReader contextReader = new ContextReader();
         Context ctx = contextReader.loadContextFromFile(ContextFile.QNP_16);
@@ -60,7 +60,7 @@ public class GenotypeTest {
     }
 
     @Test
-    @DisplayName("#5 Genotype test")
+    @DisplayName("#5 Genotype test, calculate fitness")
     public void genotypeTest5() throws ContextFileException {
         ContextReader contextReader = new ContextReader();
         Context ctx = contextReader.loadContextFromFile(ContextFile.QNP_18);
@@ -69,7 +69,7 @@ public class GenotypeTest {
     }
 
     @Test
-    @DisplayName("#6 Genotype test")
+    @DisplayName("#6 Genotype test, calculate fitness")
     public void genotypeTest6() throws ContextFileException {
         ContextReader contextReader = new ContextReader();
         Context ctx = contextReader.loadContextFromFile(ContextFile.QNP_20);

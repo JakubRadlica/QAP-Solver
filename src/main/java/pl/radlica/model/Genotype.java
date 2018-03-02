@@ -50,10 +50,13 @@ public class Genotype {
     @Override
     public String toString() {
         StringBuilder stringBuilder = new StringBuilder();
-        stringBuilder.append("FIT: "+fittnes+"  [");
+        stringBuilder.append("Genotype: [");
         for(int i: genotype){
             stringBuilder.append(i+",");
         }
+        stringBuilder.deleteCharAt(stringBuilder.length()-1);
+        stringBuilder.append(" | ");
+        stringBuilder.append(fittnes);
         stringBuilder.append("]");
         return stringBuilder.toString();
     }

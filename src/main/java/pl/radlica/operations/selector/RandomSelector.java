@@ -13,4 +13,8 @@ public class RandomSelector implements ISelector {
         Genotype genotype = population.getGenotypes().get(random.nextInt(population.getGenotypes().size()));
         return genotype;
     }
+
+    public String toString(){
+        return "Random select";
+    }
 }

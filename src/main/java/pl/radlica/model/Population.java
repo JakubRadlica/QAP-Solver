@@ -16,6 +16,7 @@ public class Population {
     @Getter @Setter protected int bestFittnes;
     @Getter @Setter protected int avgFittnes;
     @Getter @Setter protected int worstFittnes;
+    @Getter protected  Genotype bestGenotype;
 
 
     public Population(List<Genotype> genotypes){
@@ -25,6 +26,7 @@ public class Population {
 
     public void calculateFittneses(){
         bestFittnes = genotypes.get(0).getFittnes();
+        bestGenotype = genotypes.get(0);
         worstFittnes = genotypes.get(0).getFittnes();
 
         int sum=0;
@@ -33,6 +35,7 @@ public class Population {
             sum+=g.getFittnes();
             if(g.getFittnes()<bestFittnes){
                 bestFittnes = g.getFittnes();
+                bestGenotype = new Genotype(g);
             }
             if(g.getFittnes()>worstFittnes){
                 worstFittnes = g.getFittnes();
@@ -40,6 +43,11 @@ public class Population {
         }
         avgFittnes=sum/genotypes.size();
 }
+
+    public String toCsv(){
+        return bestFittnes+","+avgFittnes+","+worstFittnes;
+
+    }
 
 
     public static class PopulationBuilder{

@@ -1,4 +1,6 @@
+
 import pl.radlica.GeneticAlgorithm;
+import pl.radlica.chart.SimpleChart;
 import pl.radlica.io.ContextFile;
 import pl.radlica.io.ContextReader;
 import pl.radlica.io.Exception.ContextFileException;
@@ -16,15 +18,19 @@ public class Application {
         GeneticAlgorithm geneticAlgorithm =
                 new GeneticAlgorithm.GeneticAlgolrithmBuilder()
                         .context(context)
-                        .selector(new TournamentSelector(20))
+                        .selector(new TournamentSelector(5))
                         .mutator(new RandomSwapMutator())
                         .crossover(new SimpleSwapCrossover())
                         .populationsNumber(100)
-                        .crossoverProbability(0.5)
-                        .mutateProbability(0.00)
+                        .generationsNumber(100)
+                        .crossoverProbability(0.7)
+                        .mutateProbability(0.02)
                         .build();
 
+        geneticAlgorithm.setChartInterpreter(new SimpleChart());
+
         geneticAlgorithm.run();
+
 
     }
 }

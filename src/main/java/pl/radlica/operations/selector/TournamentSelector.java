@@ -31,4 +31,9 @@ public class TournamentSelector implements ISelector {
         }
         return bestGenotype;
     }
+
+    @Override
+    public String toString() {
+        return "Tour: "+tour;
+    }
 }

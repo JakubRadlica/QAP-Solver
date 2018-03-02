@@ -4,11 +4,10 @@ import org.junit.jupiter.api.Test;
 import pl.radlica.model.Context;
 import pl.radlica.model.Genotype;
 import pl.radlica.operations.mutator.EndsMutator;
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import pl.radlica.operations.mutator.RandomSwapMutator;
+
 
 public class MutatorTest {
-
-
 
     @Test
     @DisplayName("#1 Test EndsMutator")
@@ -29,4 +28,5 @@ public class MutatorTest {
         endsMutator.mutate(genotype);
         Assertions.assertArrayEquals(genotype.getGenotype(), new int[]{4,2,3,1});
     }
+
 }

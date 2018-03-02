@@ -20,7 +20,6 @@ public class ContextReader {
     public Context loadContextFromFile(ContextFile ctxFile) throws ContextFileException {
         ClassLoader classLoader = this.getClass().getClassLoader();
         File file = new File(classLoader.getResource(ctxFile.getFileName()).getFile());
-        System.out.println(file.getAbsoluteFile()+"  ASD ");
         return loadContextFromFile(file.getAbsolutePath());
     }
 

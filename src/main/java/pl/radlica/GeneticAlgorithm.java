@@ -1,5 +1,7 @@
 package pl.radlica;
 
+import lombok.Getter;
+import pl.radlica.chart.IChart;
 import pl.radlica.model.Context;
 import pl.radlica.model.Genotype;
 import pl.radlica.model.Population;
@@ -13,23 +15,26 @@ import java.util.List;
 
 public class GeneticAlgorithm {
 
-    private List<Population> populations = new ArrayList<>();
+    @Getter private List<Population> populations = new ArrayList<>();
     private Context context;
     private ISelector selector;
     private IMutator mutator;
     private ICrossover crossover;
     private int populationsNumber;
+    private int generationNumber;
     private double crossoverProbability;
     private double mutateProbability;
+    private IChart chart;
 
 
     private GeneticAlgorithm(Context context, ISelector selector, IMutator mutator, ICrossover crossover,
-                             int populationsNumber, double crossoverProbability, double mutateProbability){
+                             int populationsNumber, int generationNumber, double crossoverProbability, double mutateProbability){
         this.context = context;
         this.selector = selector;
         this.mutator = mutator;
         this.crossover = crossover;
         this.populationsNumber = populationsNumber;
+        this.generationNumber = generationNumber;
         this.crossoverProbability = crossoverProbability;
         this.mutateProbability = mutateProbability;
 
@@ -41,16 +46,19 @@ public class GeneticAlgorithm {
     }
 
     public void run(){
-        for(int i=0; i<populationsNumber; i++){
-            System.out.println(i+","+populations.get(i).getBestFittnes()+","+populations.get(i).getAvgFittnes()+","+populations.get(i).getWorstFittnes());
+        Genotype bestGenotype = populations.get(0).getBestGenotype();
+
+        for(int i=0; i<generationNumber; i++){
             Population population = evolve(populations.get(i));
             populations.add(population);
+            if(population.getBestGenotype().getFittnes() < bestGenotype.getFittnes()){
+                bestGenotype = new Genotype(population.getBestGenotype());
+            }
         }
+        System.out.println("Best genotype: "+bestGenotype.toString());
+        if(chart!=null)
+            chart.draw(populations, selector, crossoverProbability, mutateProbability, generationNumber, populationsNumber);
     }
-
-    //dla i do N gdzie N to liczba populacji
-    //
-
 
     private Population evolve(Population population) {
         ArrayList<Genotype> newGenotypes = new ArrayList<>();
@@ -72,6 +80,10 @@ public class GeneticAlgorithm {
         return new Population(newGenotypes);
     }
 
+    public void setChartInterpreter(IChart chart) {
+        this.chart=chart;
+    }
+
     public static class GeneticAlgolrithmBuilder {
 
         Context context;
@@ -79,6 +91,7 @@ public class GeneticAlgorithm {
         IMutator mutator;
         ICrossover crossover;
         int populationsNumber;
+        int generationsNumber;
         double mutateProbability;
         double crossoverProbability;
 
@@ -112,6 +125,11 @@ public class GeneticAlgorithm {
             return this;
         }
 
+        public GeneticAlgolrithmBuilder generationsNumber(int generationsNumber){
+            this.generationsNumber = generationsNumber;
+            return this;
+        }
+
         public GeneticAlgolrithmBuilder mutateProbability(double mutateProbability){
             this.mutateProbability = mutateProbability;
             return this;
@@ -123,7 +141,7 @@ public class GeneticAlgorithm {
         }
 
         public GeneticAlgorithm build(){
-            return new GeneticAlgorithm(context, selector, mutator, crossover, populationsNumber, mutateProbability, crossoverProbability);
+            return new GeneticAlgorithm(context, selector, mutator, crossover, populationsNumber, generationsNumber, mutateProbability, crossoverProbability);
         }
 
     }
