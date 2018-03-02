@@ -4,7 +4,11 @@ import lombok.Getter;
 import lombok.Setter;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import java.util.stream.Collectors;
 
 public class Population {
 
@@ -13,9 +17,29 @@ public class Population {
     @Getter @Setter protected int avgFittnes;
     @Getter @Setter protected int worstFittnes;
 
+
     public Population(List<Genotype> genotypes){
         this.genotypes=genotypes;
+        calculateFittneses();
     }
+
+    public void calculateFittneses(){
+        bestFittnes = genotypes.get(0).getFittnes();
+        worstFittnes = genotypes.get(0).getFittnes();
+
+        int sum=0;
+
+        for(Genotype g: genotypes){
+            sum+=g.getFittnes();
+            if(g.getFittnes()<bestFittnes){
+                bestFittnes = g.getFittnes();
+            }
+            if(g.getFittnes()>worstFittnes){
+                worstFittnes = g.getFittnes();
+            }
+        }
+        avgFittnes=sum/genotypes.size();
+}
 
 
     public static class PopulationBuilder{
@@ -28,19 +52,21 @@ public class Population {
             this.genotypeSize = 0;
         }
 
-        public void populationSize(int populationSize){
+        public PopulationBuilder populationSize(int populationSize){
             this.populationSize=populationSize;
+            return this;
         }
 
-        public void genotypeSize(int genotypeSize){
+        public PopulationBuilder genotypeSize(int genotypeSize){
             this.genotypeSize = genotypeSize;
+            return this;
         }
 
-        public Population buildInitPopulation(){
+        public Population buildInitPopulation(Context context){
             List<Genotype> genotypes = new ArrayList<Genotype>();
             Genotype.GenotypeBuilder genotypeBuilder = new Genotype.GenotypeBuilder().genotypeSize(genotypeSize);
             for(int i = 0; i<populationSize; i++){
-                genotypes.add(genotypeBuilder.buildRandomGenotype());
+                genotypes.add(genotypeBuilder.buildRandomGenotype(context));
             }
 
             return new Population(genotypes);
