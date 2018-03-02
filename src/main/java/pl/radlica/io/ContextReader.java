@@ -18,19 +18,22 @@ public class ContextReader {
     }
 
     public Context loadContextFromFile(ContextFile ctxFile) throws ContextFileException {
-        ClassLoader classLoader = getClass().getClassLoader();
-        File file = new File(classLoader.getResource("context/"+ctxFile.getFileName()).getFile());
-        return loadContextFromFile(file);
+        ClassLoader classLoader = this.getClass().getClassLoader();
+        File file = new File(classLoader.getResource(ctxFile.getFileName()).getFile());
+        System.out.println(file.getAbsoluteFile()+"  ASD ");
+        return loadContextFromFile(file.getAbsolutePath());
     }
 
     private Context loadContextFromFile(File file) throws ContextFileException {
         try {
             BufferedReader br = new BufferedReader(new FileReader(file));
             String line = br.readLine();
+            line = line.replaceAll("\\s++","");
             int contextSize = Integer.parseInt(line);
             int distance[][] = new int[contextSize][contextSize];
             int flow[][] = new int[contextSize][contextSize];
-            while((line=br.readLine()).matches("\\s++")){
+            line=br.readLine();
+            while(line.matches("\\s++") || line.matches("")){
                 line=br.readLine();
             }
             distance[0]=lineToIntArr(line);
@@ -38,7 +41,8 @@ public class ContextReader {
                 line=br.readLine();
                 distance[i]=lineToIntArr(line);
             }
-            while((line=br.readLine()).matches("\\s++")){
+            line=br.readLine();
+            while(line.matches("\\s++") || line.matches("")){
                 line=br.readLine();
             }
             flow[0]=lineToIntArr(line);
@@ -58,6 +62,7 @@ public class ContextReader {
 
     private int[] lineToIntArr(String line){
         String tokens[] = line.split("\\s++");
+        tokens =  Arrays.stream(tokens).map(string -> string.replaceAll("//s++","")).filter(string -> !string.equals("")).toArray(String[]::new);
         return Arrays.stream(tokens).mapToInt(Integer::parseInt).toArray();
     }
 }

@@ -1,11 +1,11 @@
 package pl.radlica.io;
 
 public enum ContextFile {
-    QNP_12("context/had12.dat"),
-    QNP_14("context/had14.dat"),
-    QNP_16("context/had16.dat"),
-    QNP_18("context/had18.dat"),
-    QNP_20("context/had20.dat");
+    QNP_12("had12.dat"),
+    QNP_14("had14.dat"),
+    QNP_16("had16.dat"),
+    QNP_18("had18.dat"),
+    QNP_20("had20.dat");
 
     private final String file;
 
