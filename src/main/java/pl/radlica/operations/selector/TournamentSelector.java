@@ -22,7 +22,7 @@ public class TournamentSelector implements ISelector {
 
         Genotype bestGenotype = population.getGenotypes().get(random.nextInt(popSize));
 
-        for(int i=1; i<population.getGenotypes().size(); i++){
+        for(int i=1; i<tour; i++){
             Genotype genotype = population.getGenotypes().get(random.nextInt(popSize));
 
             if(bestGenotype.getFittnes()>genotype.getFittnes()){

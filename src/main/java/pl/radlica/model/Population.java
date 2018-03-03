@@ -49,6 +49,13 @@ public class Population {
 
     }
 
+    public void print() {
+        for(Genotype g: genotypes){
+            System.out.println(g.toString());
+        }
+    }
+
+
 
     public static class PopulationBuilder{
 

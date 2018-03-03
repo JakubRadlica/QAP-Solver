@@ -51,7 +51,8 @@ public class GeneticAlgorithm {
         for(int i=0; i<generationNumber; i++){
             Population population = evolve(populations.get(i));
             populations.add(population);
-            if(population.getBestGenotype().getFittnes() < bestGenotype.getFittnes()){
+
+            if(population.getBestGenotype().getFittnes() <= bestGenotype.getFittnes()){
                 bestGenotype = new Genotype(population.getBestGenotype());
             }
         }
@@ -62,7 +63,7 @@ public class GeneticAlgorithm {
 
     private Population evolve(Population population) {
         ArrayList<Genotype> newGenotypes = new ArrayList<>();
-
+        population.print();
         for(int i=0; i<population.getGenotypes().size(); i++){
 
             Genotype genotype = new Genotype(selector.select(population));
@@ -77,6 +78,7 @@ public class GeneticAlgorithm {
 
             newGenotypes.add(genotype);
         }
+
         return new Population(newGenotypes);
     }
 

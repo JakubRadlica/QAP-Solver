@@ -30,20 +30,10 @@ public class Genotype {
 
             for (int i = 0; i < genotype.length; i++) {
                 for (int j = 0; j < genotype.length; j++) {
-                    try {
-                    int distance = context.getDistance()[i][j];
-                    int facility1 = genotype[i] - 1, facility2 = genotype[j] - 1;
-                    int flow = context.getFlow()[genotype[i] - 1][genotype[j] - 1];
                     fit += context.getDistance()[i][j] * context.getFlow()[genotype[i] - 1][genotype[j] - 1];
-
-                } catch (Exception exception){
-                        System.out.println("ASD");
-                        int distance = context.getDistance()[i][j];
-                        int facility1 = genotype[i] - 1, facility2 = genotype[j] - 1;
-                        int flow = context.getFlow()[genotype[i] - 1][genotype[j] - 1];
-                    System.out.println("ASD");
-                } }
+                }
             }
+
         return fit;
     }
 
