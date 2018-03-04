@@ -76,4 +76,25 @@ public class GenotypeTest {
         Genotype genotype = new Genotype(new int[]{8,15,16,14,19,6,7,17,1,12,10,11,5,20,2,3,4,9,18,13}, ctx);
         Assertions.assertEquals(6922, genotype.getFittnes());
     }
+
+    @Test
+    @DisplayName("#7 Genotype test, constructor")
+    public void genotypeTest7() throws ContextFileException {
+        ContextReader contextReader = new ContextReader();
+        Context ctx = contextReader.loadContextFromFile(ContextFile.QNP_20);
+        Genotype genotype = new Genotype(new int[]{8,15,16,14,19,6,7,17,1,12,10,11,5,20,2,3,4,9,18,13}, ctx);
+        Assertions.assertEquals(genotype.getFittnes(), new Genotype(genotype).getFittnes());
+    }
+
+    @Test
+    @DisplayName("#8 Genotype test, constructor")
+    public void genotypeTest8() throws ContextFileException {
+        ContextReader contextReader = new ContextReader();
+        Context ctx = contextReader.loadContextFromFile(ContextFile.QNP_18);
+        Genotype genotype = new Genotype(new int[]{8,15,16,14,6,7,17,1,12,10,11,5,2,3,4,9,18,13}, ctx);
+        Genotype newGenotype = new Genotype(genotype);
+        Genotype newGenotype2 = new Genotype(newGenotype);
+        Assertions.assertEquals(genotype.getFittnes(), newGenotype2.getFittnes());
+
+    }
 }

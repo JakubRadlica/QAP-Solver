@@ -17,15 +17,16 @@ public class Genotype {
 
     public Genotype(int[] genotype, Context context){
         this.genotype = genotype;
-        this.context=context;
-        this.fittnes = evaluate();
+        this.context = context;
+        evaluate();
+
     }
 
     public Genotype(Genotype genotype){
-        this(genotype.genotype, genotype.context);
+        this(genotype.genotype.clone(), genotype.context);
     }
 
-    private int evaluate() {
+    public void evaluate() {
         int fit = 0;
 
             for (int i = 0; i < genotype.length; i++) {
@@ -34,8 +35,9 @@ public class Genotype {
                 }
             }
 
-        return fit;
+        this.fittnes=fit;
     }
+
 
     @Override
     public String toString() {

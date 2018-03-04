@@ -15,5 +15,6 @@ public class RandomSwapMutator implements IMutator {
         int temp = genotype.getGenotype()[indexOfFirstGene];
         genotype.getGenotype()[indexOfFirstGene] = genotype.getGenotype()[indexOfSecondGene];
         genotype.getGenotype()[indexOfSecondGene] = temp;
+        genotype.evaluate();
     }
 }

@@ -26,6 +26,8 @@ public class SimpleSwapCrossover implements ICrossover {
         genotype.setGenotype(crossGenotype1);
         genotype2.setGenotype(crossGenotype2);
         fixGenotypes(genotype, genotype2);
+        genotype.evaluate();
+        genotype2.evaluate();
     }
 
 

@@ -14,7 +14,8 @@ public class RandomSelector implements ISelector {
         return genotype;
     }
 
-    public String toString(){
-        return "Random select";
+    @Override
+    public String getSelectorName() {
+        return "Random selector";
     }
 }

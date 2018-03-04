@@ -6,4 +6,5 @@ import pl.radlica.model.Population;
 public interface ISelector {
 
     Genotype select(Population population);
+    String getSelectorName();
 }

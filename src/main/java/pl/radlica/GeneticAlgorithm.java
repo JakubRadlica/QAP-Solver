@@ -45,13 +45,12 @@ public class GeneticAlgorithm {
         this.populations.add(populationBuilder.buildInitPopulation(context));
     }
 
-    public void run(){
+    public Genotype run(){
         Genotype bestGenotype = populations.get(0).getBestGenotype();
 
         for(int i=0; i<generationNumber; i++){
             Population population = evolve(populations.get(i));
             populations.add(population);
-
             if(population.getBestGenotype().getFittnes() <= bestGenotype.getFittnes()){
                 bestGenotype = new Genotype(population.getBestGenotype());
             }
@@ -59,11 +58,15 @@ public class GeneticAlgorithm {
         System.out.println("Best genotype: "+bestGenotype.toString());
         if(chart!=null)
             chart.draw(populations, selector, crossoverProbability, mutateProbability, generationNumber, populationsNumber);
+
+        return bestGenotype;
     }
 
     private Population evolve(Population population) {
         ArrayList<Genotype> newGenotypes = new ArrayList<>();
-        population.print();
+
+//        newGenotypes.add(new Genotype(population.getBestGenotype()));
+
         for(int i=0; i<population.getGenotypes().size(); i++){
 
             Genotype genotype = new Genotype(selector.select(population));

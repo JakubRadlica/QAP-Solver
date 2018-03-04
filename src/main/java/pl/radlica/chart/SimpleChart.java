@@ -24,7 +24,7 @@ public class SimpleChart implements IChart {
     @Override
     public void draw(List<Population> populationList, ISelector selector, double pm, double px, int generations, int genotypesInPopulation) {
         StringBuilder sb = new StringBuilder("Genetic Algorithm | ");
-        sb.append(selector.toString()+", ");
+        sb.append(selector.getSelectorName()+", ");
         sb.append("Px="+px+", Pm="+pm+" ");
         sb.append("Generations: "+generations+", Population size: "+genotypesInPopulation);
         String title = sb.toString();
@@ -34,10 +34,10 @@ public class SimpleChart implements IChart {
         int[] worstFitness = populationList.stream().mapToInt(i-> i.getWorstFittnes()).toArray();
         final XYChart chart = new XYChartBuilder().width(1200).height(600).theme(Styler.ChartTheme.GGPlot2).title( title).xAxisTitle("Generation number").yAxisTitle("Fitness").build();
 
-        int j=0;
-        for(int i: bestFitness){
-            System.out.println((j++)+" "+i);
-        }
+//        int j=0;
+//        for(int i: bestFitness){
+//            System.out.println((j++)+" "+i);
+//        }
         chart.addSeries("Average fitnesses", populations, avgFitness);
         chart.addSeries("Best fitnesses", bestFitness);
         chart.addSeries("Worst fitnesses", worstFitness);

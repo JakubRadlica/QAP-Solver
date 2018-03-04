@@ -33,7 +33,7 @@ public class TournamentSelector implements ISelector {
     }
 
     @Override
-    public String toString() {
-        return "Tour: "+tour;
+    public String getSelectorName() {
+        return "Tour ("+tour+")";
     }
 }

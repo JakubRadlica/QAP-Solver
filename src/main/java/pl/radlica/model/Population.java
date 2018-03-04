@@ -36,6 +36,10 @@ public class Population {
             if(g.getFittnes()<bestFittnes){
                 bestFittnes = g.getFittnes();
                 bestGenotype = new Genotype(g);
+                if(bestFittnes!=bestGenotype.getFittnes()){
+                    Genotype gs = new Genotype(bestGenotype);
+                    bestGenotype.getFittnes();
+                }
             }
             if(g.getFittnes()>worstFittnes){
                 worstFittnes = g.getFittnes();
