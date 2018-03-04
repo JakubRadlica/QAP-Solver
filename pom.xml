@@ -39,6 +39,14 @@
             <scope>test</scope>
         </dependency>
 
+        <!--Guava / Ranged Map -->
+        <!-- https://mvnrepository.com/artifact/com.google.guava/guava -->
+        <dependency>
+            <groupId>com.google.guava</groupId>
+            <artifactId>guava</artifactId>
+            <version>21.0</version>
+        </dependency>
+
         <!--real time chart-->
         <dependency>
             <groupId>org.knowm.xchart</groupId>
