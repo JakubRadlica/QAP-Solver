@@ -40,30 +40,6 @@ public class Application {
         System.out.println("Najlepszy genotyp: " + bestGenotype.toString());
 
 
-//        GeneticAlgorithm geneticAlgorithm2 =
-//                new GeneticAlgorithm.GeneticAlgolrithmBuilder()
-//                        .context(context)
-////                        .selector(new RouletteSelector())
-//                        .selector(new TournamentSelector(5))
-////                        .selector(new RandomSelector())
-//                        .mutator(new RandomSwapMutator())
-//                        .crossover(new SimpleSwapCrossover())
-//                        .populationsNumber(100)
-//                        .generationsNumber(100)
-//                        .crossoverProbability(0.5)
-//                        .mutateProbability(0.01)
-//                        .mutateSingle()
-//                        .build();
-//
-//        geneticAlgorithm2.setChartInterpreter(new SimpleChart());
-//        Genotype bestGenotype2 = geneticAlgorithm.run();
-//        System.out.println("Najlepszy genotyp: " + bestGenotype2.toString());
-
-        BruteForceAlgorithm bruteForceAlgorithm = new BruteForceAlgorithm(context);
-        bruteForceAlgorithm.run();
-
-        RandomAlgorithm randomAlgorithm = new RandomAlgorithm(context, 100);
-        System.out.println("Random: " + randomAlgorithm.run());
 
     }
 }
