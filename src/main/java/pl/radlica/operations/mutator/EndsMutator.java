@@ -12,6 +12,16 @@ public class EndsMutator implements IMutator {
             int temp = first;
             genotype.getGenotype()[0] = last;
             genotype.getGenotype()[genotype.getGenotype().length-1] = temp;
+            genotype.evaluate();
         }
+    }
+
+    @Override
+    public void mutateSingleGeno(Genotype genotype, int geno) {
+        int last = genotype.getGenotype()[genotype.getGenotype().length-1];
+        int temp = genotype.getGenotype()[geno];
+        genotype.getGenotype()[0] = last;
+        genotype.getGenotype()[genotype.getGenotype().length-1] = temp;
+        genotype.evaluate();
     }
 }

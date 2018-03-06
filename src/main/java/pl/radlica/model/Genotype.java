@@ -74,6 +74,12 @@ public class Genotype {
             int[] genotype = randomGenotype.stream().mapToInt(i -> i).toArray();
             return new Genotype(genotype, context);
         }
+
+        public Genotype buildOrderedGenotype (Context context) {
+            List<Integer> randomGenotype = IntStream.range(1, genotypeSize+1).boxed().collect(Collectors.toList());
+            int[] genotype = randomGenotype.stream().mapToInt(i -> i).toArray();
+            return new Genotype(genotype, context);
+        }
     }
 }
 

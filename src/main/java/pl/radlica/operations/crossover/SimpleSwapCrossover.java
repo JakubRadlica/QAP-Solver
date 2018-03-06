@@ -3,10 +3,7 @@ package pl.radlica.operations.crossover;
 import pl.radlica.model.Genotype;
 
 import java.lang.reflect.Array;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import java.util.Stack;
+import java.util.*;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
@@ -15,17 +12,23 @@ public class SimpleSwapCrossover implements ICrossover {
     @Override
     public void crossover(Genotype genotype, Genotype genotype2) {
 
-        int[] crossover1a = Arrays.copyOfRange(genotype.getGenotype(), 0, genotype.getGenotype().length/2);
-        int[] crossover1b = Arrays.copyOfRange(genotype2.getGenotype(), genotype2.getGenotype().length/2, genotype2.getGenotype().length);
+        Random random = new Random();
+//        int cutPoint = random.nextInt(genotype.getGenotype().length-2)+1;
+        int cutPoint = genotype.getGenotype().length/2;
+        int[] crossover1a = Arrays.copyOfRange(genotype.getGenotype(), 0, cutPoint);
+        int[] crossover1b = Arrays.copyOfRange(genotype2.getGenotype(), cutPoint, genotype2.getGenotype().length);
         int[] crossGenotype1 = concatenate(crossover1a, crossover1b);
 
-        int[] crossover2a = Arrays.copyOfRange(genotype.getGenotype(), genotype.getGenotype().length/2, genotype.getGenotype().length);
-        int[] crossover2b = Arrays.copyOfRange(genotype2.getGenotype(), 0, genotype2.getGenotype().length/2);
+        int[] crossover2a = Arrays.copyOfRange(genotype.getGenotype(), cutPoint, genotype.getGenotype().length);
+        int[] crossover2b = Arrays.copyOfRange(genotype2.getGenotype(), 0, cutPoint);
         int[] crossGenotype2 = concatenate(crossover2b,crossover2a);
 
         genotype.setGenotype(crossGenotype1);
         genotype2.setGenotype(crossGenotype2);
         fixGenotypes(genotype, genotype2);
+        if(random.nextBoolean()){
+            genotype = new Genotype(genotype2);
+        }
         genotype.evaluate();
         genotype2.evaluate();
     }

@@ -25,10 +25,12 @@ public class GeneticAlgorithm {
     private double crossoverProbability;
     private double mutateProbability;
     private IChart chart;
+    private boolean mutateSingle;
 
 
     private GeneticAlgorithm(Context context, ISelector selector, IMutator mutator, ICrossover crossover,
-                             int populationsNumber, int generationNumber, double crossoverProbability, double mutateProbability){
+                             int populationsNumber, int generationNumber, double crossoverProbability, double mutateProbability,
+                             boolean mutateSingle){
         this.context = context;
         this.selector = selector;
         this.mutator = mutator;
@@ -37,6 +39,7 @@ public class GeneticAlgorithm {
         this.generationNumber = generationNumber;
         this.crossoverProbability = crossoverProbability;
         this.mutateProbability = mutateProbability;
+        this.mutateSingle = mutateSingle;
 
         Population.PopulationBuilder populationBuilder = new Population.PopulationBuilder()
                 .genotypeSize(context.getContextSize())
@@ -54,6 +57,7 @@ public class GeneticAlgorithm {
             if(population.getBestGenotype().getFittnes() <= bestGenotype.getFittnes()){
                 bestGenotype = new Genotype(population.getBestGenotype());
             }
+            population.print();
         }
         System.out.println("Best genotype: "+bestGenotype.toString());
         if(chart!=null)
@@ -75,9 +79,18 @@ public class GeneticAlgorithm {
                 crossover.crossover(genotype, new Genotype(selector.select(population)));
             }
 
-            if(Math.random()<mutateProbability){
-                mutator.mutate(genotype);
+            if(mutateSingle) {
+                for (int j = 0; j < genotype.getGenotype().length; j++) {
+                    if (Math.random() < mutateProbability)
+                        mutator.mutateSingleGeno(genotype, j);
+                }
+            } else {
+                if(Math.random()<mutateProbability){
+                    mutator.mutate(genotype);
+                }
             }
+
+
 
             newGenotypes.add(genotype);
         }
@@ -99,6 +112,7 @@ public class GeneticAlgorithm {
         int generationsNumber;
         double mutateProbability;
         double crossoverProbability;
+        boolean mutateSingle = false;
 
         public GeneticAlgolrithmBuilder(){
             selector = new RandomSelector();
@@ -145,9 +159,18 @@ public class GeneticAlgorithm {
             return this;
         }
 
-        public GeneticAlgorithm build(){
-            return new GeneticAlgorithm(context, selector, mutator, crossover, populationsNumber, generationsNumber, mutateProbability, crossoverProbability);
+        public GeneticAlgolrithmBuilder mutateSingle(boolean mutateSingle){
+            this.mutateSingle = mutateSingle;
+            return this;
         }
 
+        public GeneticAlgorithm build(){
+            return new GeneticAlgorithm(context, selector, mutator, crossover, populationsNumber, generationsNumber, crossoverProbability, mutateProbability, mutateSingle);
+        }
+
+        public GeneticAlgolrithmBuilder mutateSingle() {
+            this.mutateSingle=true;
+            return this;
+        }
     }
 }
