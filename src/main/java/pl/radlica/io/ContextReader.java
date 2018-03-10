@@ -32,9 +32,11 @@ public class ContextReader {
             int distance[][] = new int[contextSize][contextSize];
             int flow[][] = new int[contextSize][contextSize];
             line=br.readLine();
+
             while(line.matches("\\s++") || line.matches("")){
                 line=br.readLine();
             }
+
             distance[0]=lineToIntArr(line);
             for(int i=1; i<contextSize; i++){
                 line=br.readLine();
