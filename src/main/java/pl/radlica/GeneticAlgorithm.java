@@ -59,7 +59,7 @@ public class GeneticAlgorithm {
             }
             population.print();
         }
-        System.out.println("Best genotype: "+bestGenotype.toString());
+
         if(chart!=null)
             chart.draw(populations, selector, crossoverProbability, mutateProbability, generationNumber, populationsNumber);
 
@@ -89,6 +89,7 @@ public class GeneticAlgorithm {
                     mutator.mutate(genotype);
                 }
             }
+
 
 
 
