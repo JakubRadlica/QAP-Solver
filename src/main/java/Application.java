@@ -1,6 +1,7 @@
 
 import pl.radlica.BruteForceAlgorithm;
 import pl.radlica.GeneticAlgorithm;
+import pl.radlica.GreedyAlgorithm;
 import pl.radlica.RandomAlgorithm;
 import pl.radlica.chart.SimpleChart;
 import pl.radlica.io.ContextFile;
@@ -23,21 +24,21 @@ public class Application {
         GeneticAlgorithm geneticAlgorithm =
                 new GeneticAlgorithm.GeneticAlgolrithmBuilder()
                         .context(context)
-//                        .selector(new RouletteSelector())
-                        .selector(new TournamentSelector(5))
+                        .selector(new RouletteSelector())
+//                        .selector(new TournamentSelector(5))
 //                        .selector(new RandomSelector())
                         .mutator(new RandomSwapMutator())
                         .crossover(new SimpleSwapCrossover())
                         .populationsNumber(100)
-                        .generationsNumber(100)
+                        .generationsNumber(200)
                         .crossoverProbability(0.7)
-                        .mutateProbability(0.05)
+                        .mutateProbability(0.06)
                         .mutateSingle()
                         .build();
 
         geneticAlgorithm.setChartInterpreter(new SimpleChart());
-        Genotype bestGenotype = geneticAlgorithm.run();
-        System.out.println("Najlepszy genotyp: " + bestGenotype.toString());
+        System.out.println("Najlepszy genotyp: " + geneticAlgorithm.run());
+
 
 
 
